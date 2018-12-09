@@ -93,7 +93,7 @@ const load = async ({ file, encoding, format, event }) => {
 const registerDefaultDict = async callback => {
   let wordCount = 0;
 
-  const fileNames = ["/data/initial_dict1.json", "/data/initial_dict2.json"];
+  const fileNames = ["/data/initial_dict_en0.json", "/data/initial_dict_en1.json"];
   for (let i = 0; i <= 9; i++) {
     fileNames.push(`/data/initial_dict_ja${i}.json`);
   }
