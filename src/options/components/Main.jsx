@@ -444,7 +444,7 @@ export default class Main extends React.Component {
     }
 
     const descriptions = await storage.local.get(wordsToLookup);
-    const { html } = await this.contentGenerator.generate(wordsToLookup, descriptions, true);
+    const { html } = await this.contentGenerator.generate(wordsToLookup, descriptions, isEnglishLike);
 
     if (this.trialWindow) {
       const newDom = dom.create(html);
