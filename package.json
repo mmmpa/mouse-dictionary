@@ -33,7 +33,7 @@
     "uniqlist": "1.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.0",
+    "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "acorn": "^6.0.4",
