@@ -98,9 +98,11 @@ const registerDefaultDict = async callback => {
     fileNames.push(`/data/initial_dict_ja${i}.json`);
   }
 
+  callback("0%");
   for (let i = 0; i < fileNames.length; i++) {
     wordCount += await registerDict(fileNames[i]);
-    callback(`${i + 1}/${fileNames.length}`);
+    const p = Math.round(((i + 1) * 1000.0) / fileNames.length) / 10.0;
+    callback(`${p}%`);
   }
 
   return { wordCount };
