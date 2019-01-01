@@ -12,7 +12,7 @@ import loader from "./settingsloader";
 import events from "./events";
 import Draggable from "./draggable";
 
-const DIALOG_ID = "____MOUSE_DICTIONARY_GtUfqBap4c8u";
+const DIALOG_ID = "____MOUSE_DICTIONARY_8362e06b73c3d6ae";
 
 const main = async () => {
   // Pages which have frames are not supported.
