@@ -2,6 +2,11 @@ chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.executeScript({
     file: "./main.js"
   });
+
+  chrome.tabs.executeScript({
+    file: "./frame.js",
+    allFrames: true
+  });
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
