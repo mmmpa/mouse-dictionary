@@ -41,7 +41,7 @@ export default {
       _isLastMouseUpOnTheWindow = isOnTheWindow(dialog.style, e);
     });
 
-    document.body.addEventListener("mousemove", ev => {
+    const kkk = ev => {
       if (_mouseDown) {
         return;
       }
@@ -56,6 +56,19 @@ export default {
         return;
       }
       parseTextAndLookup(textAtCursor, false, true);
+    };
+    document.body.addEventListener("mousemove", kkk);
+
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      //chrome.tabs.sendRequest(sender.tab.id, request);
+      //sendResponse({});
+      console.info("hello! this is main.js:" + request.text);
+      //kkk(request.e);
+      parseTextAndLookup(request.text, false, true);
+
+      //events.xxx(request);
+      //eee(request.e);
+      //xxx("mousemove", kkk);
     });
 
     let _lastText = null;
