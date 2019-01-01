@@ -59,16 +59,8 @@ export default {
     };
     document.body.addEventListener("mousemove", kkk);
 
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      //chrome.tabs.sendRequest(sender.tab.id, request);
-      //sendResponse({});
-      console.info("hello! this is main.js:" + request.text);
-      //kkk(request.e);
+    chrome.runtime.onMessage.addListener(request => {
       parseTextAndLookup(request.text, false, true);
-
-      //events.xxx(request);
-      //eee(request.e);
-      //xxx("mousemove", kkk);
     });
 
     let _lastText = null;
