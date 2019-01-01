@@ -1,13 +1,13 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   mode: process.env.NODE_ENV || "development",
   entry: {
     "options/options": "./src/options/main.jsx",
-    main: "./src/main/main.js"
+    main: "./src/main/main.js",
+    frame: "./src/frame/frame.js"
   },
   output: {
     path: __dirname + "/dist"
