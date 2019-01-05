@@ -12,7 +12,7 @@ import storage from "../lib/storage";
 import ContentGenerator from "./contentgenerator";
 
 export default {
-  attach(dialog, settings, updateContent) {
+  attach(dialog, draggable, settings, updateContent) {
     let _selection = null;
     let _mouseDown = false;
     let _isLastMouseUpOnTheWindow = false;
@@ -31,6 +31,8 @@ export default {
     });
 
     document.body.addEventListener("mouseup", e => {
+      draggable.onMouseUp();
+
       _mouseDown = false;
       _selection = window.getSelection().toString();
       if (_selection) {
@@ -41,7 +43,9 @@ export default {
       _isLastMouseUpOnTheWindow = isOnTheWindow(dialog.style, e);
     });
 
-    const kkk = ev => {
+    document.body.addEventListener("mousemove", e => {
+      draggable.onMouseMove(e);
+
       if (_mouseDown) {
         return;
       }
@@ -51,16 +55,31 @@ export default {
       if (!_isLastMouseUpOnTheWindow && window.getSelection().toString()) {
         return;
       }
-      let textAtCursor = atcursor(ev.target, ev.clientX, ev.clientY, settings.parseWordsLimit);
+      let textAtCursor = atcursor(e.target, e.clientX, e.clientY, settings.parseWordsLimit);
       if (!textAtCursor) {
         return;
       }
       parseTextAndLookup(textAtCursor, false, true);
-    };
-    document.body.addEventListener("mousemove", kkk);
+    });
 
     chrome.runtime.onMessage.addListener(request => {
       parseTextAndLookup(request.text, false, true);
+    });
+
+    // cross-extension messaging
+    chrome.runtime.onMessage.addListener(request => {
+      const m = request.message;
+      switch (m.type) {
+        case "text":
+          parseTextAndLookup(m.text, m.mustIncludeOriginalText, m.enableShortWord);
+          break;
+        case "mousemove":
+          draggable.onMouseMove(m);
+          break;
+        case "mouseup":
+          draggable.onMouseUp();
+          break;
+      }
     });
 
     let _lastText = null;
