@@ -3,12 +3,12 @@
   "description": "__MSG_appDesc__",
   "default_locale": "ja",
   "author": "wtetsu",
-  "version": "1.1.9.1",
+  "version": "1.1.9.3",
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
   },
-  "permissions": ["storage", "unlimitedStorage", "activeTab", "https://*/*"],
+  "permissions": ["storage", "unlimitedStorage", "activeTab"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
